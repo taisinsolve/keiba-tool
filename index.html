@@ -87,11 +87,12 @@ td{
 <div class="card">
 <table>
 <thead>
-<tr>
-<th>枠</th>
+<tr><th>枠</th>
 <th>馬</th>
 <th>馬名</th>
 <th>性齢</th>
+<th>斤量</th>
+<th>騎手</th>
 </tr>
 </thead>
 <tbody id="result">
@@ -136,29 +137,44 @@ for(const line of lines){
         continue;
     }
     horses.push({
-        number:Number(parts[0]),
-        name:parts[1].trim()
-    });
+    number:Number(parts[0]),
+    name:parts[1].trim(),
+    sexage: parts[2] ? parts[2].trim() : "",
+    weight: parts[3] ? parts[3].trim() : "",
+    jockey: parts[4] ? parts[4].trim() : ""
+});
 }
 horses.sort((a,b)=>a.number-b.number);
 let html="";
 for(const horse of horses){
     const frame=getFrame(horse.number,horses.length);
     html += `
-    <tr>
-        <td class="waku frame${frame}">
-            ${frame}
-        </td>
-        <td>
-            ${horse.number}
-        </td>
-        <td>
-            ${horse.name}
-        </td>
-        <td>
-        </td>
-    </tr>
-    `;
+<tr>
+    <td class="waku frame${frame}">
+        ${frame}
+    </td>
+
+    <td>
+        ${horse.number}
+    </td>
+
+    <td>
+        ${horse.name}
+    </td>
+
+    <td>
+        ${horse.sexage}
+    </td>
+
+    <td>
+        ${horse.weight}
+    </td>
+
+    <td>
+        ${horse.jockey}
+    </td>
+</tr>
+`;
 }
 document.getElementById("result").innerHTML=html;
 }
