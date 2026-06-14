@@ -1,1 +1,52 @@
-<h1>出馬表メーカー テスト成功</h1>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>出馬表メーカー</title>
+</head>
+<body>
+
+<h1>出馬表メーカー</h1>
+
+<textarea id="input" rows="8" style="width:100%;">
+オグリキャップ
+イナリワン
+スーパークリーク
+</textarea>
+
+<br><br>
+
+<button onclick="generate()">出馬表生成</button>
+
+<hr>
+
+<div id="result"></div>
+
+<script>
+function generate() {
+
+const lines =
+document.getElementById("input")
+.value
+.split("\n");
+
+let html = "";
+
+for (const horse of lines) {
+
+if (horse.trim() === "") continue;
+
+html += "<div>" + horse + "</div>";
+
+}
+
+document.getElementById("result").innerHTML = html;
+
+}
+
+generate();
+</script>
+
+</body>
+</html>
