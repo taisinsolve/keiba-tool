@@ -35,6 +35,10 @@ button{
     padding:12px;
     margin-top:10px;
     font-size:16px;
+    background:#2f7df6;
+    color:white;
+    border:none;
+    border-radius:8px;
 }
 table{
     width:100%;
@@ -97,16 +101,30 @@ td{
 </div>
 <script>
 function getFrame(number,total){
-if(total <= 8){
-    return Math.ceil(number/2);
-}
-if(total <= 16){
-    return Math.ceil(number/2);
-}
-if(number <= 14){
-    return Math.ceil(number/2);
-}
-return 8;
+
+    if(total <= 8){
+        return number;
+    }
+
+    if(total <= 16){
+        return Math.ceil(number / 2);
+    }
+
+    if(total == 17){
+        if(number <= 14){
+            return Math.ceil(number / 2);
+        }
+        return number - 7;
+    }
+
+    if(total >= 18){
+        if(number <= 14){
+            return Math.ceil(number / 2);
+        }
+        return 8;
+    }
+
+    return Math.ceil(number / 2);
 }
 function generate(){
 const text=document.getElementById("input").value.trim();
